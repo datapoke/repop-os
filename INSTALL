@@ -2,6 +2,7 @@
 
 cd $HOME/Documents/Config/repop-os
 sudo cp -rv etc /
+rm -rf etc
 sudo chmod -R go-rwx /etc/luks-keys
 sudo chmod 600 /etc/NetworkManager/system-connections/*
 
