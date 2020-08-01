@@ -11,5 +11,7 @@ sudo cp  -v /etc/hostname                          etc/
 sudo cp  -v /etc/hosts                             etc/
 sudo cp -rv /etc/luks-keys                         etc/
 sudo cp -rv /etc/NetworkManager/system-connections etc/NetworkManager/
-sudo cp -rv /etc/openvpn                           etc/openvpn
+if [ -d /etc/openvpn ] ; then
+    sudo cp -rv /etc/openvpn                       etc/openvpn
+fi
 sudo chown -R $USER:$USER etc/
