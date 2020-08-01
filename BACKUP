@@ -1,7 +1,7 @@
 #!/bin/sh
 
-mkdir -p $HOME/Documents/Config/pop-os
-cd $HOME/Documents/Config/pop-os
+mkdir -p $HOME/Documents/Config/repop-os
+cd $HOME/Documents/Config/repop-os
  
 sudo cp  -v /etc/crypttab                          etc/
 sudo cp  -v /etc/docker/daemon.json                etc/docker/
