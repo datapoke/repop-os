@@ -1,30 +1,95 @@
-#!/bin/sh -x
+#!/bin/sh
 
-cd $HOME/Documents/Config/repop-os
+
+CRYPT_ID=7f0b407a-a9dd-4ce7-85bc-80183ae26593
+FS_ID=709611d1-2848-41d5-acff-70954e758702
+
+
+####
+cd /media/$USER/Config
+
+
+# user configuration
+cp -Trv skel /home/$USER
+gsettings set org.gnome.Terminal.Legacy.Settings headerbar "@mb false"
+ln -sf /mnt/SSD1/home/$USER/Archives /home/$USER/
+ln -sf /mnt/SSD1/home/$USER/Games    /home/$USER/
+ln -sf /mnt/SSD1/home/$USER/.steam   /home/$USER/
+
+
+# system configuration
 sudo cp -rv etc /
-rm -rf etc
+
+
+# if the crypttab entry is missing, add it
+grep $CRYPT_ID /etc/crypttab > /dev/null
+if [ $? -ne 0 ] ; then
+    cat crypt/crypttab | sudo tee -a /etc/crypttab
+fi
+
+
+# if the fstab entry is missing, add it
+grep $FS_ID /etc/fstab > /dev/null
+if [ $? -ne 0 ] ; then
+    cat crypt/fstab | sudo tee -a /etc/fstab
+fi
+
+
+# make sure user can't read sensitive config files
 sudo chmod -R go-rwx /etc/luks-keys
 sudo chmod 600 /etc/NetworkManager/system-connections/*
 
+
+# restart network
 sudo systemctl restart NetworkManager
+echo "Waiting for network to come online..."
+sleep 15
 
+
+# update system and applications
 sudo apt update && sudo apt dist-upgrade -y
-sudo apt install -y vim \
+
+
+# install our favorite apps
+sudo apt install -y gamemode \
                     gstreamer1.0-libav \
+                    lm-sensors \
                     lutris \
-                    steam \
-                    gamemode \
                     neofetch \
+                    openssh-server \
+                    psensor \
+                    steam \
+                    vim
 
-flatpak install -y com.discordapp.Discord                                 
-flatpak install -y com.mattermost.Desktop                                 
-flatpak install -y com.slack.Slack                                        
-flatpak install -y io.atom.Atom                                           
-flatpak install -y org.gimp.GIMP                                          
-flatpak install -y org.gnome.Evolution                                    
-flatpak install -y org.gnome.Rhythmbox3                                   
-flatpak install -y org.signal.Signal                                      
-flatpak install -y us.zoom.Zoom                                           
+flatpak install -y com.discordapp.Discord
+flatpak install -y com.obsproject.Studio
+flatpak install -y org.gimp.GIMP
+flatpak install -y org.gnome.Evolution
+flatpak install -y org.gnome.Rhythmbox3
+flatpak install -y org.kde.kdenlive
 
+## e-book reader:
+# flatpak install -y com.github.johnfactotum.Foliate
+
+## youtube downloader:
+# flatpak install -y com.github.unrud.VideoDownloader
+
+## run windows in a virtual machine:
+# flatpak install -y org.gnome.Boxes
+
+## my favorite GUI text editor:
+# flatpak install -y io.atom.Atom
+
+
+# remove lame email client
 sudo apt purge -y geary
+
+
+# clean out unnecessary cruft
 sudo apt autoremove -y --purge
+
+
+# link desktop email, contacts and calendar to evolution flatpak
+cd /home/$USER/.local/share
+rm -rf evolution
+ln -s /home/$USER/.var/app/org.gnome.Evolution/data/evolution

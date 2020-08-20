@@ -1,17 +1,20 @@
 #!/bin/sh
 
-mkdir -p $HOME/Documents/Config/repop-os
-cd $HOME/Documents/Config/repop-os
- 
-mkdir -p etc etc/docker etc/NetworkManager
-sudo cp  -v /etc/crypttab                          etc/
-sudo cp  -v /etc/docker/daemon.json                etc/docker/
-sudo cp  -v /etc/fstab                             etc/
+CRYPT_ID=7f0b407a-a9dd-4ce7-85bc-80183ae26593
+FS_ID=709611d1-2848-41d5-acff-70954e758702
+
+cd /media/$USER/Config
+
+mkdir -p skel
+cp -rv /home/$USER/.config skel/
+cp  -v /home/$USER/.bashrc skel/
+
+mkdir -p etc/NetworkManager
 sudo cp  -v /etc/hostname                          etc/
 sudo cp  -v /etc/hosts                             etc/
 sudo cp -rv /etc/luks-keys                         etc/
 sudo cp -rv /etc/NetworkManager/system-connections etc/NetworkManager/
-if [ -d /etc/openvpn ] ; then
-    sudo cp -rv /etc/openvpn                       etc/
-fi
-sudo chown -R $USER:$USER etc/
+
+mkdir -p crypt
+grep $CRYPT_ID /etc/crypttab > crypt/crypttab
+grep $FS_ID    /etc/fstab    > crypt/fstab
