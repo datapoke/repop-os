@@ -6,7 +6,7 @@ FS_ID=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
 
 
 ####
-cd /media/$USER/Config
+cd /media/$USER/writable
 
 
 # user configuration

@@ -3,7 +3,7 @@
 CRYPT_ID=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
 FS_ID=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
 
-cd /media/$USER/Config
+cd /media/$USER/writable
 
 mkdir -p skel
 cp -rv /home/$USER/.config skel/
