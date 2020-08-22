@@ -1,4 +1,5 @@
-insert pop os installer usb
+# insert pop os installer usb
+
 cd /media/$USER/writable
 git clone https://github.com/datapoke/repop-os
 
