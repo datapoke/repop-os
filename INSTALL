@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -x
 
 
 CRYPT_ID=^luks
@@ -10,7 +10,7 @@ cd /media/$USER/writable
 
 
 # system configuration
-sudo cp -rv etc /
+sudo cp -r etc /
 
 
 # if the crypttab entry is missing, add it
@@ -82,7 +82,7 @@ sudo apt autoremove -y --purge
 
 
 # user configuration
-cp -Trv skel /home/$USER
+cp -Tr skel /home/$USER
 gsettings set org.gnome.Terminal.Legacy.Settings headerbar "@mb false"
 ln -sf /mnt/SSD1/home/$USER/Archives /home/$USER/
 ln -sf /mnt/SSD1/home/$USER/Games    /home/$USER/

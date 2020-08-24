@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -x
 
 CRYPT_ID=^luks
 FS_ID=/mnt
@@ -6,14 +6,14 @@ FS_ID=/mnt
 cd /media/$USER/writable
 
 mkdir -p skel
-cp -rv /home/$USER/.config skel/
-cp  -v /home/$USER/.bashrc skel/
+cp -r /home/$USER/.config skel/
+cp    /home/$USER/.bashrc skel/
 
 sudo mkdir -p etc/NetworkManager
-sudo cp  -v /etc/hostname                          etc/
-sudo cp  -v /etc/hosts                             etc/
-sudo cp -rv /etc/luks-keys                         etc/
-sudo cp -rv /etc/NetworkManager/system-connections etc/NetworkManager/
+sudo cp    /etc/hostname                          etc/
+sudo cp    /etc/hosts                             etc/
+sudo cp -r /etc/luks-keys                         etc/
+sudo cp -r /etc/NetworkManager/system-connections etc/NetworkManager/
 
 mkdir -p crypt
 grep $CRYPT_ID /etc/crypttab > crypt/crypttab
