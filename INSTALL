@@ -9,14 +9,6 @@ FS_ID=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
 cd /media/$USER/writable
 
 
-# user configuration
-cp -Trv skel /home/$USER
-gsettings set org.gnome.Terminal.Legacy.Settings headerbar "@mb false"
-ln -sf /mnt/SSD1/home/$USER/Archives /home/$USER/
-ln -sf /mnt/SSD1/home/$USER/Games    /home/$USER/
-ln -sf /mnt/SSD1/home/$USER/.steam   /home/$USER/
-
-
 # system configuration
 sudo cp -rv etc /
 
@@ -87,6 +79,14 @@ sudo apt purge -y geary
 
 # clean out unnecessary cruft
 sudo apt autoremove -y --purge
+
+
+# user configuration
+cp -Trv skel /home/$USER
+gsettings set org.gnome.Terminal.Legacy.Settings headerbar "@mb false"
+ln -sf /mnt/SSD1/home/$USER/Archives /home/$USER/
+ln -sf /mnt/SSD1/home/$USER/Games    /home/$USER/
+ln -sf /mnt/SSD1/home/$USER/.steam   /home/$USER/
 
 
 # link desktop email, contacts and calendar to evolution flatpak

@@ -9,7 +9,7 @@ mkdir -p skel
 cp -rv /home/$USER/.config skel/
 cp  -v /home/$USER/.bashrc skel/
 
-mkdir -p etc/NetworkManager
+sudo mkdir -p etc/NetworkManager
 sudo cp  -v /etc/hostname                          etc/
 sudo cp  -v /etc/hosts                             etc/
 sudo cp -rv /etc/luks-keys                         etc/
