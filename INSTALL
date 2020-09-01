@@ -6,7 +6,7 @@ FS_ID=/mnt
 
 
 ####
-cd /media/$USER/writable
+cd /media/$USER/writable/repop-os
 
 
 # system configuration
@@ -82,7 +82,7 @@ sudo apt autoremove -y --purge
 
 
 # user configuration
-cd /media/$USER/writable
+cd /media/$USER/writable/repop-os
 cp -Tr skel /home/$USER
 gsettings set org.gnome.Terminal.Legacy.Settings headerbar "@mb false"
 ln -sf /mnt/SSD1/home/$USER/Archives /home/$USER/

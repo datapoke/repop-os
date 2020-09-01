@@ -3,7 +3,7 @@
 CRYPT_ID=^luks
 FS_ID=/mnt
 
-cd /media/$USER/writable
+cd /media/$USER/writable/repop-os
 
 mkdir -p skel
 cp -r /home/$USER/.config skel/
