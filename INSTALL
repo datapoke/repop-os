@@ -43,7 +43,8 @@ sudo apt update && sudo apt dist-upgrade -y
 
 
 # install our favorite apps
-sudo apt install -y gamemode \
+sudo apt install -y evolution \
+                    gamemode \
                     gstreamer1.0-libav \
                     lm-sensors \
                     lutris \
@@ -56,7 +57,6 @@ sudo apt install -y gamemode \
 flatpak install -y com.discordapp.Discord
 flatpak install -y com.obsproject.Studio
 flatpak install -y org.gimp.GIMP
-flatpak install -y org.gnome.Evolution
 flatpak install -y org.gnome.Rhythmbox3
 flatpak install -y org.kde.kdenlive
 
@@ -88,9 +88,3 @@ gsettings set org.gnome.Terminal.Legacy.Settings headerbar "@mb false"
 ln -sf /mnt/SSD1/home/$USER/Archives /home/$USER/
 ln -sf /mnt/SSD1/home/$USER/Games    /home/$USER/
 ln -sf /mnt/SSD1/home/$USER/.steam   /home/$USER/
-
-
-# link desktop email, contacts and calendar to evolution flatpak
-cd /home/$USER/.local/share
-rm -rf evolution
-ln -s /home/$USER/.var/app/org.gnome.Evolution/data/evolution
