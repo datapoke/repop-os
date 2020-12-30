@@ -117,7 +117,6 @@ if ! shopt -oq posix; then
 fi
 
 ##############################################################################
-echo executing .bashrc
 
 # PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 # export PATH
