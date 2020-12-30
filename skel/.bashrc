@@ -125,10 +125,6 @@ echo executing .bashrc
 EDITOR=/usr/bin/nano
 export EDITOR
 
-if [ -n "$DESKTOP_SESSION" ] ; then
-    if [ "$TERM" = "xterm-256color" -a -x /usr/bin/neofetch ] ; then
-        /usr/bin/neofetch
-    elif [ -e /run/motd.dynamic ] ; then
-        cat /run/motd.dynamic
-    fi
+if [ -n "$DESKTOP_SESSION" -a -e /usr/share/base-files/motd ] ; then
+    cat /usr/share/base-files/motd
 fi
