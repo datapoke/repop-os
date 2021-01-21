@@ -123,7 +123,3 @@ fi
 
 EDITOR=/usr/bin/nano
 export EDITOR
-
-if [ -n "$DESKTOP_SESSION" -a -e /usr/share/base-files/motd ] ; then
-    cat /usr/share/base-files/motd
-fi
